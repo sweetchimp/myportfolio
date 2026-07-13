@@ -9,19 +9,43 @@
   <meta property="og:description" content="Computer Science Engineering student at the University of Debrecen with interests in cybersecurity, artificial intelligence, and technology-driven innovation.">
   <meta property="og:type" content="website">
   <link rel="icon" type="image/png" href="/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/portfolio.css">
+  <style>
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 550ms ease-out, transform 550ms ease-out;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+  </style>
 </head>
 <body>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
 
   @if (session('success'))
-    <div class="success-banner">{{ session('success') }}</div>
+    <div class="success-banner">{{ session('success') }}<button class="banner-dismiss" aria-label="Dismiss">&times;</button></div>
   @endif
 
   <nav class="nav-bar">
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#goals">Goals</a>
-    <a href="#contact">Contact</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#goals">Goals</a>
+      <a href="#contact">Contact</a>
+    </div>
   </nav>
 
   <main>
@@ -53,13 +77,14 @@
           </svg>
         </a>
       </div>
+      <a href="/cv.pdf" class="btn btn-outline cv-btn" download>Download CV</a>
     </section>
 
     {{-- ─── Skills ─── --}}
     <section id="skills" class="section">
       <h2 class="section-title glow-text"><span class="section-title-accent">//</span> Skills</h2>
       <div class="skills-category">
-        <h3 class="category-label glow-text">Languages</h3>
+        <h3 class="category-label glow-text">Programming</h3>
         <div class="skill-tags">
           <span class="tag">Python</span>
           <span class="tag">JavaScript</span>
@@ -67,16 +92,63 @@
         </div>
       </div>
       <div class="skills-category">
-        <h3 class="category-label glow-text">Frameworks &amp; Libraries</h3>
+        <h3 class="category-label glow-text">Frameworks</h3>
         <div class="skill-tags">
           <span class="tag">React</span>
+          <span class="tag">Laravel</span>
+          <span class="tag">Django</span>
         </div>
       </div>
       <div class="skills-category">
-        <h3 class="category-label glow-text">AI &amp; Tools</h3>
+        <h3 class="category-label glow-text">Artificial Intelligence</h3>
         <div class="skill-tags">
-          <span class="tag">AI Video &amp; Image Generation</span>
-          <span class="tag">AI Agents</span>
+          <span class="tag">AI Agent Development</span>
+          <span class="tag">AI Image Generation</span>
+          <span class="tag">AI Video Generation</span>
+          <span class="tag">Machine Learning Fundamentals</span>
+        </div>
+      </div>
+      <div class="skills-category">
+        <h3 class="category-label glow-text">Tools</h3>
+        <div class="skill-tags">
+          <span class="tag">Git</span>
+          <span class="tag">GitHub</span>
+          <span class="tag">Microsoft Office</span>
+        </div>
+      </div>
+      <div class="skills-category">
+        <h3 class="category-label glow-text">Professional</h3>
+        <div class="skill-tags">
+          <span class="tag">Teamwork</span>
+          <span class="tag">Communication</span>
+          <span class="tag">Problem Solving</span>
+          <span class="tag">Time Management</span>
+        </div>
+      </div>
+    </section>
+
+    {{-- ─── Experience ─── --}}
+    <section id="experience" class="section">
+      <h2 class="section-title glow-text"><span class="section-title-accent">//</span> Experience</h2>
+      <div class="exp-list">
+        <div class="exp-card">
+          <h3 class="exp-role">Junior Developer Intern</h3>
+          <p class="exp-company">Ardenfield, Cygnus Solutions Limited</p>
+          <ul class="exp-bullets">
+            <li>Contributed to software development projects with senior developers</li>
+            <li>Assisted in developing, testing, and maintaining web applications</li>
+            <li>Worked with modern development frameworks and version control</li>
+            <li>Strengthened debugging, collaboration, and software engineering skills</li>
+          </ul>
+        </div>
+        <div class="exp-card">
+          <h3 class="exp-role">Intern</h3>
+          <p class="exp-company">Tiscon Solutions</p>
+          <ul class="exp-bullets">
+            <li>Assisted with technology-related projects</li>
+            <li>Worked collaboratively on assigned technical tasks</li>
+            <li>Developed strong communication and problem-solving abilities</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -106,8 +178,12 @@
     {{-- ─── Contact ─── --}}
     <section id="contact" class="section">
       <h2 class="section-title glow-text"><span class="section-title-accent">//</span> Contact</h2>
+      <p class="reach-out">Open to internships, freelance work, and collaboration — reach out below.</p>
       <form action="{{ route('contact.submit') }}" method="POST" class="contact-form">
         @csrf
+        <div class="hp-field" aria-hidden="true">
+          <input type="text" name="website" tabindex="-1" autocomplete="off">
+        </div>
         <input type="text" name="name" placeholder="Your Name" required>
         <input type="email" name="email" placeholder="your@email.com" required>
         <textarea name="message" placeholder="Your Message..." required></textarea>
@@ -135,6 +211,64 @@
     </section>
 
   </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-name">Korutaro Joshua Mwesigwa &copy; {{ date('Y') }}</p>
+      <div class="footer-icons">
+        <a href="https://github.com/sweetchimp" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.744.083-.73.083-.73 1.205.085 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12 24 5.37 18.63 0 12 0z"/>
+          </svg>
+        </a>
+        <a href="https://linkedin.com/in/josh-korutaro" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </a>
+        <a href="mailto:joshuakorutaro05@gmail.com" aria-label="Email">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+          </svg>
+        </a>
+      </div>
+      <p class="footer-credit">Built with Laravel</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var banner = document.querySelector('.success-banner');
+      if (!banner) return;
+      var timer = setTimeout(function () { dismiss(); }, 4000);
+      banner.querySelector('.banner-dismiss').addEventListener('click', function () {
+        clearTimeout(timer);
+        dismiss();
+      });
+      function dismiss() {
+        banner.classList.add('banner-fade-out');
+        banner.addEventListener('transitionend', function () { banner.remove(); });
+      }
+
+      var toggle = document.querySelector('.nav-toggle');
+      if (toggle) {
+        toggle.addEventListener('click', function () {
+          var expanded = this.getAttribute('aria-expanded') === 'true';
+          this.setAttribute('aria-expanded', String(!expanded));
+          this.closest('.nav-bar').classList.toggle('nav-open');
+        });
+        document.querySelectorAll('.nav-links a').forEach(function (link) {
+          link.addEventListener('click', function () {
+            var bar = document.querySelector('.nav-bar');
+            bar.classList.remove('nav-open');
+            toggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+    });
+  </script>
+  <script src="/js/scroll-reveal.js"></script>
+  <script src="/js/particles.js"></script>
 
 </body>
 </html>

@@ -20,6 +20,11 @@ class PortfolioController extends Controller
             'message' => 'required|string',
         ]);
 
+        // Honeypot — silently reject bot submissions
+        if ($request->filled('website')) {
+            return back()->with('success', 'Message received — thanks!');
+        }
+
         Message::create($validated);
 
         return back()->with('success', 'Message received — thanks!');
