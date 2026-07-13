@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Message;
 use Illuminate\Http\Request;
 
 class PortfolioController extends Controller
@@ -19,8 +20,7 @@ class PortfolioController extends Controller
             'message' => 'required|string',
         ]);
 
-        // For now, just confirm it worked.
-        // Later: save to database or send an email.
+        Message::create($validated);
 
         return back()->with('success', 'Message received — thanks!');
     }
