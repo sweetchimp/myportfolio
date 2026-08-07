@@ -12,9 +12,9 @@
   window.addEventListener('resize', resize);
 
   var colors = [
-    [201, 163, 85],
-    [184, 137, 74],
-    [224, 195, 132]
+    [0, 245, 255],
+    [255, 47, 216],
+    [157, 143, 214]
   ];
 
   var particles = [];

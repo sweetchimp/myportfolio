@@ -1,0 +1,6 @@
+[build]
+  command = "composer install --no-interaction --prefer-dist --no-progress --no-dev && php scripts/netlify-build.php"
+  publish = "dist"
+
+[build.environment]
+  PHP_VERSION = "8.3"

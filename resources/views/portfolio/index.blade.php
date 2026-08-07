@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Joshua Korutaro | CS Engineering Student & Aspiring Cybersecurity Professional</title>
+  <title>JOSH'S WORKSPACE</title>
   <meta name="description" content="Computer Science Engineering student at the University of Debrecen with interests in cybersecurity, artificial intelligence, and technology-driven innovation.">
-  <meta property="og:title" content="Joshua Korutaro | CS Engineering Student & Aspiring Cybersecurity Professional">
+  <meta property="og:title" content="JOSH'S WORKSPACE">
   <meta property="og:description" content="Computer Science Engineering student at the University of Debrecen with interests in cybersecurity, artificial intelligence, and technology-driven innovation.">
   <meta property="og:type" content="website">
-  <link rel="icon" type="image/png" href="/favicon.png">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/portfolio.css">
+  <link rel="stylesheet" href="/css/terminal.css">
   <style>
     .reveal {
       opacity: 0;
@@ -43,6 +44,7 @@
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
       <a href="#goals">Goals</a>
       <a href="#contact">Contact</a>
     </div>
@@ -52,9 +54,10 @@
 
     {{-- ─── Hero / About ─── --}}
     <section id="about" class="hero">
-      <p class="hero-eyebrow glow-text">HELLO, I'M</p>
-      <h1 class="hero-name glow-text">KORUTARO JOSHUA MWESIGWA</h1>
-      <p class="hero-subtitle">Coder Josh &middot; 1st Year Computer Science Engineering @ University of Debrecen</p>
+      <p class="section-readout">[ ABOUT.EXE ]</p>
+      <p class="hero-eyebrow glow-text">HELLO, WELCOME TO JOSH'S WORKSPACE</p>
+      <h1 class="hero-name glow-text">JOSH'S WORKSPACE</h1>
+      <p class="hero-subtitle">Coder Josh &middot; At the University of Debrecen, graduating 2028.</p>
       <p class="hero-bio">Joshua Korutaro is a Computer Science Engineering student with a strong interest in cybersecurity, artificial intelligence, and technology-driven innovation. He is passionate about building practical digital solutions, creating impactful content, and exploring opportunities that combine technology with business. Beyond academics, Josh enjoys building meaningful connections, values personal growth and faith, and is committed to using his skills to make a difference in his community and beyond.</p>
       <div class="hero-buttons">
         <a href="#contact" class="btn btn-primary">Get In Touch</a>
@@ -82,7 +85,8 @@
 
     {{-- ─── Skills ─── --}}
     <section id="skills" class="section">
-      <h2 class="section-title glow-text"><span class="section-title-accent">//</span> Skills</h2>
+      <p class="section-readout">[ SKILLS.LOADED ]</p>
+      <h2 class="section-title glow-text glow-cyan"><span class="section-title-accent">//</span> Skills</h2>
       <div class="skills-category">
         <h3 class="category-label glow-text">Programming</h3>
         <div class="skill-tags">
@@ -129,7 +133,8 @@
 
     {{-- ─── Experience ─── --}}
     <section id="experience" class="section">
-      <h2 class="section-title glow-text"><span class="section-title-accent">//</span> Experience</h2>
+      <p class="section-readout">[ EXP.LOADED ]</p>
+      <h2 class="section-title glow-text glow-magenta"><span class="section-title-accent">//</span> Experience</h2>
       <div class="exp-list">
         <div class="exp-card">
           <h3 class="exp-role">Junior Developer Intern</h3>
@@ -153,9 +158,17 @@
       </div>
     </section>
 
+    {{-- ─── Projects ─── --}}
+    <section id="projects" class="section">
+      <p class="section-readout">[ PROJECTS.LOADED ]</p>
+      <h2 class="section-title glow-text glow-cyan"><span class="section-title-accent">//</span> Projects</h2>
+      <div id="projects-grid" class="projects-grid"></div>
+    </section>
+
     {{-- ─── Goals ─── --}}
     <section id="goals" class="section">
-      <h2 class="section-title glow-text"><span class="section-title-accent">//</span> Goals</h2>
+      <p class="section-readout">[ GOALS.LOADED ]</p>
+      <h2 class="section-title glow-text glow-magenta"><span class="section-title-accent">//</span> Goals</h2>
       <ul class="goal-list">
         <li>Become a skilled cybersecurity professional.</li>
         <li>Build innovative technology solutions.</li>
@@ -177,18 +190,31 @@
 
     {{-- ─── Contact ─── --}}
     <section id="contact" class="section">
-      <h2 class="section-title glow-text"><span class="section-title-accent">//</span> Contact</h2>
+      <p class="section-readout">[ CONTACT.OPEN ]</p>
+      <h2 class="section-title glow-text glow-cyan"><span class="section-title-accent">//</span> Contact</h2>
       <p class="reach-out">Open to internships, freelance work, and collaboration — reach out below.</p>
-      <form action="{{ route('contact.submit') }}" method="POST" class="contact-form">
-        @csrf
-        <div class="hp-field" aria-hidden="true">
-          <input type="text" name="website" tabindex="-1" autocomplete="off">
-        </div>
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="your@email.com" required>
-        <textarea name="message" placeholder="Your Message..." required></textarea>
-        <button type="submit" class="btn btn-primary">Send Message</button>
-      </form>
+      @if (env('NETLIFY_BUILD'))
+        <form name="contact" method="POST" data-netlify="true" netlify-honeypot="website" action="/thanks.html" class="contact-form">
+          <div class="hp-field" aria-hidden="true">
+            <input type="text" name="website" tabindex="-1" autocomplete="off">
+          </div>
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="your@email.com" required>
+          <textarea name="message" placeholder="Your Message..." required></textarea>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+      @else
+        <form action="{{ route('contact.submit') }}" method="POST" class="contact-form">
+          @csrf
+          <div class="hp-field" aria-hidden="true">
+            <input type="text" name="website" tabindex="-1" autocomplete="off">
+          </div>
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="your@email.com" required>
+          <textarea name="message" placeholder="Your Message..." required></textarea>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+      @endif
 
       @if (session('success'))
         <div class="contact-success">{{ session('success') }}</div>
@@ -214,7 +240,7 @@
 
   <footer class="site-footer">
     <div class="footer-inner">
-      <p class="footer-name">Korutaro Joshua Mwesigwa &copy; {{ date('Y') }}</p>
+      <p class="footer-name">JOSH'S WORKSPACE &copy; {{ date('Y') }}</p>
       <div class="footer-icons">
         <a href="https://github.com/sweetchimp" target="_blank" rel="noopener" aria-label="GitHub">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
@@ -233,8 +259,29 @@
         </a>
       </div>
       <p class="footer-credit">Built with Laravel</p>
+      <button id="terminal-hint" class="term-hint" aria-label="Open hidden terminal">&gt;_</button>
     </div>
   </footer>
+
+  <div id="terminal-overlay" class="term-overlay" hidden>
+    <div class="term-window" role="dialog" aria-label="Terminal">
+      <div class="term-titlebar">
+        <div class="term-dots">
+          <span class="term-dot red"></span>
+          <span class="term-dot yellow"></span>
+          <span class="term-dot green"></span>
+        </div>
+        <span class="term-title">josh@workspace: ~</span>
+        <button class="term-close" id="terminal-close" aria-label="Close terminal">&times;</button>
+      </div>
+      <div class="term-body" id="terminal-body"></div>
+      <div class="term-input-line">
+        <span class="term-prompt">guest@joshs-workspace:~$</span>
+        <input class="term-input" id="terminal-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Terminal input">
+        <span class="term-cursor"></span>
+      </div>
+    </div>
+  </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -269,6 +316,8 @@
   </script>
   <script src="/js/scroll-reveal.js"></script>
   <script src="/js/particles.js"></script>
+  <script src="/js/github-projects.js"></script>
+  <script src="/js/terminal.js"></script>
 
 </body>
 </html>
