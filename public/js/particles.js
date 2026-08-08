@@ -12,13 +12,13 @@
   window.addEventListener('resize', resize);
 
   var colors = [
-    [0, 245, 255],
-    [255, 47, 216],
-    [157, 143, 214]
+    [56, 200, 210],
+    [215, 106, 169],
+    [143, 150, 173]
   ];
 
   var particles = [];
-  var COUNT = 20;
+  var COUNT = 14;
 
   for (var i = 0; i < COUNT; i++) {
     var c = colors[Math.floor(Math.random() * colors.length)];
@@ -29,7 +29,7 @@
       vx: (Math.random() - 0.5) * 0.3,
       vy: -(0.1 + Math.random() * 0.3),
       color: c,
-      alpha: 0.15 + Math.random() * 0.05
+      alpha: 0.07 + Math.random() * 0.05
     });
   }
 

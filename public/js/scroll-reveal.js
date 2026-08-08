@@ -2,10 +2,22 @@ document.addEventListener('DOMContentLoaded', function () {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   var sections = document.querySelectorAll('.section');
+  var clusters = document.querySelectorAll('.bento-cluster');
+  var expCards = document.querySelectorAll('.exp-card');
   var tags = document.querySelectorAll('.tag');
   var goals = document.querySelectorAll('.goal-list li');
 
   sections.forEach(function (el) { el.classList.add('reveal'); });
+
+  clusters.forEach(function (el, i) {
+    el.classList.add('reveal');
+    el.style.transitionDelay = (i * 90) + 'ms';
+  });
+
+  expCards.forEach(function (el, i) {
+    el.classList.add('reveal');
+    el.style.transitionDelay = (i * 80) + 'ms';
+  });
 
   tags.forEach(function (el, i) {
     el.classList.add('reveal');
