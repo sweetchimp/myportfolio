@@ -45,9 +45,10 @@ file_put_contents($dist . '/index.html', $html);
 $assets = [
     'css/portfolio.css',
     'css/terminal.css',
-    'js/github-projects.js',
-    'js/particles.js',
+    'js/theme-toggle.js',
     'js/scroll-reveal.js',
+    'js/particles.js',
+    'js/github-projects.js',
     'js/terminal.js',
     'cv.pdf',
     'favicon.svg',

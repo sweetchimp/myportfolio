@@ -9,14 +9,25 @@
   <meta property="og:description" content="Computer Science Engineering student at the University of Debrecen with interests in cybersecurity, artificial intelligence, and technology-driven innovation.">
   <meta property="og:type" content="website">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Karla:wght@400;500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/portfolio.css">
   <link rel="stylesheet" href="/css/terminal.css">
   <style>
     .reveal {
       opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 600ms ease-out, transform 600ms ease-out;
+      transform: translateY(18px);
+      transition: opacity 550ms ease-out, transform 550ms ease-out;
     }
     .reveal.visible {
       opacity: 1;
@@ -31,12 +42,23 @@
   <div class="blob blob-1"></div>
   <div class="blob blob-2"></div>
   <div class="blob blob-3"></div>
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
 
   @if (session('success'))
     <div class="success-banner">{{ session('success') }}<button class="banner-dismiss" aria-label="Dismiss">&times;</button></div>
   @endif
 
   <nav class="nav-bar">
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle color theme" title="Toggle color theme">
+      <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="4"></circle>
+        <path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+      </svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+    </button>
     <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -54,29 +76,12 @@
 
     {{-- ─── Hero / About ─── --}}
     <section id="about" class="hero hero-split">
-      <div class="hero-visual" aria-hidden="true">
-        <!-- TODO: replace .hero-visual-panel background with a real photo
-             when available — swap the CSS background art for an <img> that
-             fills .hero-visual-panel (object-fit: cover). -->
-        <div class="hero-visual-panel">
-          <div class="hero-visual-grid"></div>
-          <span class="hero-visual-node hero-visual-node--1"></span>
-          <span class="hero-visual-node hero-visual-node--2"></span>
-          <span class="hero-visual-node hero-visual-node--3"></span>
-          <span class="hero-visual-node hero-visual-node--4"></span>
-          <pre class="hero-visual-code">const <span class="c-key">josh</span> = {
-  degree: <span class="c-str">'BSc Computer Science'</span>,
-  focus:  <span class="c-str">['security', 'ai', 'web']</span>,
-  status: <span class="c-str">'building &amp; shipping'</span>
-};</pre>
-          <div class="hero-visual-scan"></div>
-        </div>
-      </div>
       <div class="hero-content">
-        <p class="section-readout">[ ABOUT.EXE ]</p>
+        <p class="section-readout"><span class="readout-dark">[ ABOUT.EXE ]</span><span class="readout-light">ABOUT ME</span></p>
         <p class="hero-eyebrow glow-text">CS ENGINEERING &middot; UNIVERSITY OF DEBRECEN</p>
         <h1 class="hero-name glow-text">Joshua Korutaro</h1>
-        <p class="hero-subtitle">Software developer focused on cybersecurity, artificial intelligence, and practical digital products.</p>
+        <p class="hero-subtitle">Full-Stack Junior Software Engineer &amp; AI Application Developer</p>
+        <p class="hero-subtitle-secondary">University of Debrecen, graduating 2028</p>
         <p class="hero-bio">Joshua Korutaro is a Computer Science Engineering student at the University of Debrecen who builds practical digital solutions across web development, cybersecurity, and AI. He has completed two software internships, maintains public projects on GitHub, and is focused on engineering secure, reliable systems. Beyond the keyboard, he values personal growth, community, and building technology that makes a difference.</p>
         <div class="hero-stats">
           <div class="stat-block">
@@ -119,7 +124,7 @@
 
     {{-- ─── Skills / Experience / Projects: unified bento grid ─── --}}
     <section class="section bento-section">
-      <p class="section-readout">[ SKILLS.LOADED ]</p>
+      <p class="section-readout"><span class="readout-dark">[ SKILLS.LOADED ]</span><span class="readout-light">SKILLS &amp; WORK</span></p>
       <h2 class="section-title glow-text glow-cyan"><span class="section-title-accent">//</span> Skills &middot; Experience &middot; Projects</h2>
       <div class="bento-grid">
 
@@ -151,19 +156,27 @@
         <div id="skills" class="bento-cluster bento-skills">
           <h3 class="cluster-label">Skills</h3>
           <div class="skills-category">
-            <h4 class="category-label">Programming</h4>
+            <h4 class="category-label">Frontend</h4>
             <div class="skill-tags">
-              <span class="tag">Python</span>
+              <span class="tag">React</span>
+              <span class="tag">Next.js</span>
+              <span class="tag">TypeScript</span>
               <span class="tag">JavaScript</span>
-              <span class="tag">PHP</span>
             </div>
           </div>
           <div class="skills-category">
-            <h4 class="category-label">Frameworks</h4>
+            <h4 class="category-label">Backend</h4>
             <div class="skill-tags">
-              <span class="tag">React</span>
               <span class="tag">Laravel</span>
-              <span class="tag">Django</span>
+              <span class="tag">Node.js</span>
+              <span class="tag">Python</span>
+            </div>
+          </div>
+          <div class="skills-category">
+            <h4 class="category-label">Databases</h4>
+            <div class="skill-tags">
+              <span class="tag">PostgreSQL</span>
+              <span class="tag">MySQL</span>
             </div>
           </div>
           <div class="skills-category">
@@ -204,7 +217,7 @@
 
     {{-- ─── Goals ─── --}}
     <section id="goals" class="section">
-      <p class="section-readout">[ GOALS.LOADED ]</p>
+      <p class="section-readout"><span class="readout-dark">[ GOALS.LOADED ]</span><span class="readout-light">GOALS</span></p>
       <h2 class="section-title glow-text glow-magenta"><span class="section-title-accent">//</span> Goals</h2>
       <ul class="goal-list">
         <li>Become a skilled cybersecurity professional.</li>
@@ -227,7 +240,7 @@
 
     {{-- ─── Contact ─── --}}
     <section id="contact" class="section">
-      <p class="section-readout">[ CONTACT.OPEN ]</p>
+      <p class="section-readout"><span class="readout-dark">[ CONTACT.OPEN ]</span><span class="readout-light">CONTACT</span></p>
       <h2 class="section-title glow-text glow-cyan"><span class="section-title-accent">//</span> Contact</h2>
       <p class="reach-out">Open to internships, freelance work, and collaboration — reach out below.</p>
       @if (env('NETLIFY_BUILD'))
@@ -351,6 +364,7 @@
       }
     });
   </script>
+  <script src="/js/theme-toggle.js"></script>
   <script src="/js/scroll-reveal.js"></script>
   <script src="/js/particles.js"></script>
   <script src="/js/github-projects.js"></script>
