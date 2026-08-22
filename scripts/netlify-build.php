@@ -24,6 +24,7 @@ $kernel->bootstrap();
 
 $controller = $app->make(App\Http\Controllers\PortfolioController::class);
 $html = $controller->index()->render();
+$joshkoLabsHtml = $controller->joshkoLabs()->render();
 
 $dist = $root . '/dist';
 if (is_dir($dist)) {
@@ -41,15 +42,18 @@ if (!mkdir($dist, 0777, true) && !is_dir($dist)) {
 }
 
 file_put_contents($dist . '/index.html', $html);
+file_put_contents($dist . '/joshko-labs.html', $joshkoLabsHtml);
 
 $assets = [
     'css/portfolio.css',
+    'css/joshko-labs.css',
     'css/terminal.css',
     'js/theme-toggle.js',
     'js/scroll-reveal.js',
     'js/particles.js',
     'js/github-projects.js',
     'js/terminal.js',
+    'js/joshko-labs.js',
     'cv.pdf',
     'favicon.svg',
     'robots.txt',

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOSHKO LABS</title>
+    <meta name="description" content="Joshko Labs is the freelance/studio side of Joshua Korutaro's work - building real, working software for small businesses and organizations: web applications, business management systems, and AI integration.">
+    <meta property="og:title" content="JOSHKO LABS">
+  <meta property="og:description" content="Practical software for real problems. Web applications, business management systems, and AI integration.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/joshko-labs.css">
+</head>
+<body>
+
+  @if (session('success'))
+    <div class="success-banner">{{ session('success') }}<button class="banner-dismiss" aria-label="Dismiss">&times;</button></div>
+  @endif
+
+  <nav class="nav-bar">
+    <a class="kl-brand" href="#top">Joshko<em>Labs</em></a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="view-toggle" aria-label="Switch site view">
+      <a href="{{ route('home') }}">Portfolio</a>
+      <a href="{{ route('joshko-labs') }}" class="active" aria-current="page">Joshko Labs</a>
+    </div>
+    <div class="nav-links">
+      <div class="view-toggle" aria-label="Switch site view">
+        <a href="{{ route('home') }}">Portfolio</a>
+        <a href="{{ route('joshko-labs') }}" class="active" aria-current="page">Joshko Labs</a>
+      </div>
+      <a href="#services">Services</a>
+      <a href="#why">Why Us</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <main id="top">
+
+    {{-- ─── Hero ─── --}}
+    <section class="hero kl-hero">
+      <p class="kl-eyebrow">Freelance &middot; Studio Work</p>
+        <h1 class="kl-hero-title">Joshko Labs</h1>
+      <p class="kl-tagline">Practical software for real problems.</p>
+        <p class="kl-intro kl-fade-late">Joshko Labs is the freelance/studio side of my work &mdash; building real, working software for small businesses and organizations. Every project listed here is live and testable, not just a design mockup.</p>
+      <div class="hero-buttons kl-fade-late">
+        <a href="#contact" class="btn btn-primary">Start a Project</a>
+        <a href="#work" class="btn btn-outline">View Work</a>
+      </div>
+    </section>
+
+    {{-- ─── Services: interactive tabs ─── --}}
+    <section id="services" class="section">
+      <div class="js-reveal">
+        <p class="kl-eyebrow">Services</p>
+        <h2 class="section-title">What we <span class="accent-word">build</span></h2>
+      </div>
+
+      <div class="kl-tablist" role="tablist" aria-label="Joshko Labs services">
+        <button class="kl-tab" id="tab-webapps" role="tab" aria-selected="true" aria-controls="panel-webapps" tabindex="0" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4" width="19" height="16" rx="2.5"/><path d="M2.5 9h19"/><path d="M6 6.6h.01M8.8 6.6h.01"/></svg>
+          Web Applications
+        </button>
+        <button class="kl-tab" id="tab-bms" role="tab" aria-selected="false" aria-controls="panel-bms" tabindex="-1" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3.5" width="14" height="17" rx="2"/><path d="M9 3.5v3h6v-3"/><path d="M9 11h6M9 15h4"/></svg>
+          Business Management Systems
+        </button>
+        <button class="kl-tab" id="tab-ai" role="tab" aria-selected="false" aria-controls="panel-ai" tabindex="-1" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.7 4.6L18 9l-4.3 1.4L12 15l-1.7-4.6L6 9l4.3-1.4z"/><path d="M18.5 14.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg>
+          AI Integration
+        </button>
+      </div>
+
+      <div class="kl-panel-wrap">
+        <div class="kl-tabpanel" id="panel-webapps" role="tabpanel" aria-labelledby="tab-webapps">
+          <div class="kl-service-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4" width="19" height="16" rx="2.5"/><path d="M2.5 9h19"/><path d="m9 13-2.5 2.5L9 18"/><path d="m15 13 2.5 2.5L15 18"/></svg>
+          </div>
+          <h3 class="kl-panel-title">Web Applications</h3>
+          <p class="kl-panel-desc">Modern, responsive websites and web applications built with React and Laravel &mdash; from business sites to full custom platforms.</p>
+          <ul class="kl-feature-list">
+            <li>Business websites through to full custom platforms</li>
+            <li>Responsive builds that work on any screen</li>
+            <li>React front ends paired with Laravel back ends</li>
+            <li>Real, working software &mdash; live and testable, not mockups</li>
+          </ul>
+        </div>
+
+        <div class="kl-tabpanel" id="panel-bms" role="tabpanel" aria-labelledby="tab-bms" hidden>
+          <div class="kl-service-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3.5" width="14" height="17" rx="2"/><path d="M9 3.5v3h6v-3"/><path d="M9 11h6M9 15h4"/></svg>
+          </div>
+          <h3 class="kl-panel-title">Business Management Systems</h3>
+          <p class="kl-panel-desc">Custom internal tools for tracking operations &mdash; bookings, inventory, staff, and reporting &mdash; tailored to how your business actually works.</p>
+          <ul class="kl-feature-list">
+            <li>Bookings tracking that matches your workflow</li>
+            <li>Inventory oversight in one place</li>
+            <li>Staff records and coordination</li>
+            <li>Reporting on the numbers you care about</li>
+          </ul>
+        </div>
+
+        <div class="kl-tabpanel" id="panel-ai" role="tabpanel" aria-labelledby="tab-ai" hidden>
+          <div class="kl-service-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.7 4.6L18 9l-4.3 1.4L12 15l-1.7-4.6L6 9l4.3-1.4z"/><path d="M18.5 14.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg>
+          </div>
+          <h3 class="kl-panel-title">AI Integration</h3>
+          <p class="kl-panel-desc">Adding practical AI-powered features into new or existing software &mdash; automation, summarization, and smart assistants.</p>
+          <ul class="kl-feature-list">
+            <li>Automation of repetitive tasks</li>
+            <li>Summarization of long or messy content</li>
+            <li>Smart assistants built around your data</li>
+            <li>Fits into new builds or existing software</li>
+          </ul>
+        </div>
+      </div>
+
+      <noscript>
+        <style>
+          .kl-tablist { display: none; }
+          .kl-tabpanel[hidden] { display: block !important; margin-top: 1rem; }
+        </style>
+      </noscript>
+    </section>
+
+    {{-- ─── Why Joshko Labs ─── --}}
+    <section id="why" class="section">
+      <div class="js-reveal">
+        <p class="kl-eyebrow">Why Joshko Labs</p>
+        <h2 class="section-title">Small studio, <span class="accent-word">real</span> outcomes</h2>
+      </div>
+      <div class="kl-why-grid">
+        <div class="kl-why-card js-reveal">
+          <span class="kl-why-numeral">01</span>
+          <h3>Modern, secure technologies</h3>
+          <p>Built on current, well-supported stacks with security taken seriously.</p>
+        </div>
+        <div class="kl-why-card js-reveal">
+          <span class="kl-why-numeral">02</span>
+          <h3>Real working software</h3>
+          <p>Every project ships with a live, testable version &mdash; not just a design mockup.</p>
+        </div>
+        <div class="kl-why-card js-reveal">
+          <span class="kl-why-numeral">03</span>
+          <h3>Direct, personal communication</h3>
+          <p>You work directly with the person building it, from first call to launch.</p>
+        </div>
+        <div class="kl-why-card js-reveal">
+          <span class="kl-why-numeral">04</span>
+          <h3>Ongoing support &amp; iteration</h3>
+          <p>The work continues after launch, improving as your needs do.</p>
+        </div>
+      </div>
+    </section>
+
+    {{-- ─── Featured Work ─── --}}
+    <section id="work" class="section">
+      <div class="js-reveal">
+        <p class="kl-eyebrow">Featured Work</p>
+        <h2 class="section-title">Built &amp; <span class="accent-word">live</span></h2>
+      </div>
+      <div class="kl-work-grid">
+
+        <article class="kl-work-card js-reveal-card">
+          <p class="kl-work-kind">Hotel Operations Platform</p>
+          <h3>Alton Hotels Management System</h3>
+          <p class="kl-work-desc">A full hotel operations platform built for a 30-room property &mdash; reservations, guest management, check-in/check-out, F&amp;B, staff management, and reporting.</p>
+          <div class="kl-work-foot">
+            <a href="https://altonhotels.netlify.app/" target="_blank" rel="noopener" class="btn btn-primary">Live Demo</a>
+            <span class="kl-live-note">Live &amp; testable</span>
+          </div>
+        </article>
+
+        <article class="kl-work-card js-reveal-card">
+          <p class="kl-work-kind">Farm Management System</p>
+          <h3>FarmOS</h3>
+          <p class="kl-work-desc">A farm management system designed for small-to-medium mixed farms &mdash; tracking expenses, production, sales, and worker payments. Validated against a real 200-animal, 10-crop farm operation.</p>
+          <div class="kl-work-foot">
+            <span class="kl-soon">Live demo coming soon</span>
+          </div>
+        </article>
+
+        <div class="kl-gh-block js-reveal">
+          <p class="kl-eyebrow">More builds</p>
+          <p class="kl-gh-sub">Open-source projects and experiments, pulled live from GitHub.</p>
+          <div id="kl-github-grid" class="kl-work-grid kl-gh-grid" aria-live="polite"></div>
+          <a class="kl-gh-link" href="https://github.com/sweetchimp" target="_blank" rel="noopener">See everything on GitHub &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    {{-- ─── Status / Reviews placeholder ─── --}}
+    <section class="section kl-status">
+      <div class="js-reveal">
+        <p class="kl-status-badge">Currently taking on select projects</p>
+        <p class="kl-status-sub">Client reviews will be added here as projects are completed.</p>
+      </div>
+    </section>
+
+    {{-- ─── Contact ─── --}}
+    <section id="contact" class="section">
+      <div class="js-reveal">
+        <p class="kl-eyebrow">Contact</p>
+        <h2 class="section-title">Start a <span class="accent-word">project</span></h2>
+        <p class="kl-intro">Have a business problem that needs software? Describe it below &mdash; you'll get a direct reply.</p>
+      </div>
+
+      @if (env('NETLIFY_BUILD'))
+        <form name="joshko-labs-contact" method="POST" data-netlify="true" netlify-honeypot="website" action="/thanks.html" class="contact-form">
+          <div class="hp-field" aria-hidden="true">
+            <input type="text" name="website" tabindex="-1" autocomplete="off">
+          </div>
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="your@email.com" required>
+          <input type="text" name="company" placeholder="Company (optional)">
+          <textarea name="project_description" placeholder="Tell me about your project..." required></textarea>
+          <button type="submit" class="btn btn-primary">Send Inquiry</button>
+        </form>
+      @else
+        <form action="{{ route('joshko-labs.contact') }}" method="POST" class="contact-form">
+          @csrf
+          <div class="hp-field" aria-hidden="true">
+            <input type="text" name="website" tabindex="-1" autocomplete="off">
+          </div>
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="your@email.com" required>
+          <input type="text" name="company" placeholder="Company (optional)">
+          <textarea name="project_description" placeholder="Tell me about your project..." required></textarea>
+          <button type="submit" class="btn btn-primary">Send Inquiry</button>
+        </form>
+      @endif
+
+      @if (session('success'))
+        <div class="contact-success">{{ session('success') }}</div>
+      @endif
+
+      <div class="contact-footer">
+        <a href="mailto:joshuakorutaro05@gmail.com">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          joshuakorutaro05@gmail.com
+        </a>
+        <a href="https://linkedin.com/in/josh-korutaro" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          Josh Korutaro
+        </a>
+        <a href="https://github.com/sweetchimp" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.744.083-.73.083-.73 1.205.085 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12 24 5.37 18.63 0 12 0z"/></svg>
+          @@sweetchimp
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+      <p class="footer-name">Joshko<em>Labs</em> &copy; {{ date('Y') }}</p>
+    <div class="footer-icons">
+      <a href="https://github.com/sweetchimp" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.744.083-.73.083-.73 1.205.085 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12 24 5.37 18.63 0 12 0z"/></svg>
+      </a>
+      <a href="https://linkedin.com/in/josh-korutaro" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <a href="mailto:joshuakorutaro05@gmail.com" aria-label="Email">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      </a>
+    </div>
+    <p class="footer-credit">Practical software for real problems.</p>
+  </footer>
+
+  <script src="/js/joshko-labs.js" defer></script>
+
+</body>
+</html>
