@@ -1034,6 +1034,18 @@ html[data-theme="dark"] .section-title-accent {
   font-size: 0.85em;
 }
 
+@media (min-width: 900px) {
+  .goal-list {
+    display: block;
+    columns: 2;
+    column-gap: 3rem;
+  }
+
+  .goal-list li {
+    break-inside: avoid;
+  }
+}
+
 /* ── Contact form ── */
 .contact-form {
   max-width: 560px;

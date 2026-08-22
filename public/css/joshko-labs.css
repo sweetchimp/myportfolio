@@ -609,14 +609,14 @@ html.js .kl-tabpanel.is-entering.is-shown {
 }
 
 .kl-panel-desc {
-  grid-column: 2;
+  grid-column: 1 / -1;
   color: var(--ink);
   font-size: 1rem;
-  max-width: 62ch;
+  max-width: 68ch;
 }
 
 .kl-feature-list {
-  grid-column: 2;
+  grid-column: 1 / -1;
   list-style: none;
   margin: 0.9rem 0 0;
   padding: 0;
@@ -648,7 +648,7 @@ html.js .kl-tabpanel.is-entering.is-shown {
   /* ── Why Joshko Labs ── */
 .kl-why-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 252px), 1fr));
   gap: 1.4rem;
 }
 
@@ -693,11 +693,13 @@ html.js .kl-tabpanel.is-entering.is-shown {
 }
 
 .kl-work-card {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 2.6rem;
   background: var(--surface-alt);
   border-radius: var(--radius-lg);
-  padding: 2.1rem 2rem 1.7rem;
+  padding: 1.9rem 2.2rem;
   box-shadow: var(--shadow-soft);
   transition: box-shadow 0.25s;
 }
@@ -718,6 +720,7 @@ html.js .kl-work-card.js-reveal-card.is-visible {
 }
 
 .kl-work-kind {
+  grid-column: 1;
   font-size: 0.74rem;
   font-weight: 500;
   letter-spacing: 0.16em;
@@ -727,24 +730,26 @@ html.js .kl-work-card.js-reveal-card.is-visible {
 }
 
 .kl-work-card h3 {
+  grid-column: 1;
   font-size: 1.42rem;
   margin-bottom: 0.7rem;
 }
 
 .kl-work-desc {
+  grid-column: 1;
   color: var(--ink-secondary);
   font-size: 0.97rem;
-  flex-grow: 1;
-  margin-bottom: 1.4rem;
+  max-width: 60ch;
 }
 
 .kl-work-foot {
+  grid-column: 2;
+  grid-row: 1 / span 3;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.9rem;
-  padding-top: 1.1rem;
-  border-top: 1px solid var(--line-soft);
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.8rem;
 }
 
 .kl-work-foot .btn {
@@ -807,6 +812,8 @@ html.js .kl-work-card.js-reveal-card.is-visible {
 }
 
 .kl-gh-card {
+  display: flex;
+  flex-direction: column;
   padding: 1.6rem 1.5rem 1.4rem;
 }
 
@@ -1188,6 +1195,29 @@ html.js .kl-work-card.js-reveal-card.is-visible {
   .contact-form .btn {
     align-self: stretch;
     text-align: center;
+  }
+
+  /* work cards return to a stacked layout on phones */
+  .kl-work-card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1.7rem 1.5rem 1.5rem;
+  }
+
+  .kl-work-desc {
+    max-width: none;
+    margin-bottom: 0;
+  }
+
+  .kl-work-foot {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.9rem;
+    margin-top: 1.2rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--line-soft);
   }
 
   .contact-footer {
