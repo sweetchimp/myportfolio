@@ -343,7 +343,7 @@ main {
 
 .kl-logo {
   display: block;
-  width: clamp(150px, 22vw, 220px);
+  width: clamp(175px, 25vw, 275px);
   height: auto;
 }
 
