@@ -316,6 +316,37 @@ main {
   padding: 4.5rem 0 5.5rem;
 }
 
+/* hero is a centered column on the Joshko Labs page */
+.kl-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.kl-hero .kl-eyebrow::after {
+  content: '';
+  width: 2rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.55;
+}
+
+.kl-hero .hero-buttons {
+  justify-content: center;
+}
+
+/* ── Brand mark ── */
+.kl-hero-brand {
+  margin-bottom: 2rem;
+}
+
+.kl-logo {
+  display: block;
+  width: clamp(150px, 22vw, 220px);
+  height: auto;
+}
+
 .kl-eyebrow {
   display: flex;
   align-items: center;
@@ -373,6 +404,18 @@ html.js .kl-hero-title.is-settled .kl-letter {
 html.js .kl-hero.is-animating .kl-tagline {
   opacity: 0;
   transform: translateY(14px);
+}
+
+/* brand mark leads the entrance, before the title letters */
+html.js .kl-hero.is-animating .kl-fade-first {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+html.js .kl-hero .kl-fade-first.is-shown {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 550ms ease-out, transform 550ms var(--ease-out);
 }
 
 html.js .kl-hero .kl-tagline.is-shown {
@@ -1272,6 +1315,10 @@ html.js .kl-work-card.js-reveal-card.is-visible {
   }
 
   html.js .kl-hero.is-settled-simple .kl-hero-title,
+  html.js .kl-hero.is-settled-simple .kl-fade-first {
+    animation: kl-simple-fade 500ms ease-out both;
+  }
+
   html.js .kl-hero.is-settled-simple .kl-tagline,
   html.js .kl-hero.is-settled-simple .kl-fade-late {
     animation: kl-simple-fade 500ms ease-out both;

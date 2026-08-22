@@ -46,6 +46,9 @@
 
     {{-- ─── Hero ─── --}}
     <section class="hero kl-hero">
+      <div class="kl-hero-brand kl-fade-first">
+        <img src="{{ asset('images/joshko-logo-light.png') }}" alt="Joshko Labs logo" width="880" height="440" class="kl-logo">
+      </div>
       <p class="kl-eyebrow">Freelance &middot; Studio Work</p>
         <h1 class="kl-hero-title">Joshko Labs</h1>
       <p class="kl-tagline">Practical software for real problems.</p>

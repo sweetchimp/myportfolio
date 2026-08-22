@@ -99,6 +99,8 @@
 
     var tagline = document.querySelector('.kl-tagline');
     var lateFades = document.querySelectorAll('.kl-fade-late');
+    var brand = document.querySelector('.kl-fade-first');
+    if (brand) brand.style.transitionDelay = '0ms';
     var taglineDelayMs = letters.length * LETTER_STAGGER_MS + 260;
     if (tagline) tagline.style.transitionDelay = taglineDelayMs + 'ms';
     lateFades.forEach(function (el) {
@@ -107,6 +109,7 @@
 
     requestAnimationFrame(function () {
       requestAnimationFrame(function () {
+        if (brand) brand.classList.add('is-shown');
         title.classList.add('is-settled');
         if (tagline) tagline.classList.add('is-shown');
         lateFades.forEach(function (el) { el.classList.add('is-shown'); });
