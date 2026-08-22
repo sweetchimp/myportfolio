@@ -65,6 +65,8 @@ $assets = [
     'favicon.svg',
     'robots.txt',
     'thanks.html',
+    'images/joshko-logo-light.png',
+    'images/joshko-logo-dark.png',
 ];
 
 foreach ($assets as $asset) {
