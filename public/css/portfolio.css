@@ -1,93 +1,93 @@
 :root {
-  /* Light theme palette */
-  --bg: #f6f8fb;
-  --bg-2: #eef2f7;
-  --primary: #0e7c86;
-  --primary-soft: rgba(14, 124, 134, 0.1);
-  --secondary: #b0366f;
-  --secondary-soft: rgba(176, 54, 111, 0.08);
-  --highlight: #16324a;
-  --violet: #5b6472;
-  --text: #1f2733;
-  --text-muted: rgba(31, 39, 51, 0.68);
-  --text-subtle: rgba(31, 39, 51, 0.22);
+  /* Light theme palette (Joshko Labs sage & cream identity) */
+  --bg: #f4f1ec;
+  --bg-2: #faf8f4;
+  --primary: #166534;
+  --primary-soft: rgba(22, 101, 52, 0.08);
+  --secondary: #57534e;
+  --secondary-soft: rgba(87, 83, 78, 0.07);
+  --highlight: #1c1917;
+  --violet: #6b655f;
+  --text: #1c1917;
+  --text-muted: rgba(28, 25, 23, 0.7);
+  --text-subtle: rgba(28, 25, 23, 0.24);
   --surface: #ffffff;
-  --line: rgba(14, 124, 134, 0.2);
+  --line: rgba(22, 101, 52, 0.16);
   --radius-lg: 18px;
   --radius-md: 12px;
   --radius-sm: 8px;
-  --font: 'Karla', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif;
-  --font-heading: 'Poppins', -apple-system, 'Segoe UI', sans-serif;
+  --font: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif;
+  --font-heading: 'Fraunces', Georgia, 'Times New Roman', serif;
   --font-mono: 'JetBrains Mono', 'Courier New', Courier, Consolas, monospace;
   --font-size-body: clamp(0.95rem, 1.6vw, 1.05rem);
   --font-size-sm: clamp(0.78rem, 1.3vw, 0.85rem);
-  --shadow-soft: 0 8px 30px rgba(22, 50, 74, 0.06);
-  --shadow-lift: 0 16px 40px rgba(22, 50, 74, 0.12);
+  --shadow-soft: 0 8px 30px rgba(28, 25, 23, 0.05);
+  --shadow-lift: 0 16px 40px rgba(28, 25, 23, 0.09);
 
   /* Semantic tokens (light defaults) */
   --readout-color: var(--primary);
   --eyebrow-color: var(--secondary);
-  --card-bg: var(--bg);
-  --card-border: rgba(31, 39, 51, 0.08);
+  --card-bg: var(--surface);
+  --card-border: rgba(28, 25, 23, 0.06);
   --card-shadow: var(--shadow-soft);
   --card-shadow-hover: var(--shadow-lift);
-  --card-hover-border: rgba(14, 124, 134, 0.35);
-  --card-hover-border-2: rgba(176, 54, 111, 0.4);
+  --card-hover-border: rgba(22, 101, 52, 0.3);
+  --card-hover-border-2: rgba(87, 83, 78, 0.35);
   --card-hover-shadow: var(--shadow-soft);
   --cluster-color: var(--primary);
   --tag-bg: var(--bg);
-  --tag-border: rgba(31, 39, 51, 0.1);
+  --tag-border: rgba(28, 25, 23, 0.1);
   --tag-color: var(--text);
   --tag-hover-border: var(--primary);
   --tag-hover-bg: var(--surface);
   --tag-hover-color: var(--primary);
-  --tag-hover-shadow: 0 8px 18px rgba(14, 124, 134, 0.14);
+  --tag-hover-shadow: 0 8px 18px rgba(22, 101, 52, 0.12);
   --project-title-color: var(--text);
-  --input-border: rgba(91, 100, 114, 0.4);
+  --input-border: rgba(87, 83, 78, 0.35);
   --input-focus-bg: var(--surface);
   --input-focus-ring: var(--primary-soft);
   --success-bg: var(--primary-soft);
   --success-color: var(--primary);
-  --nav-mobile-bg: rgba(246, 248, 251, 0.96);
+  --nav-mobile-bg: rgba(244, 241, 236, 0.96);
   --nav-line: var(--text);
   --selection-bg: var(--primary-soft);
   --selection-color: var(--highlight);
-  --social-hover-shadow: 0 8px 20px rgba(14, 124, 134, 0.18);
-  --icon-hover-shadow: 0 8px 18px rgba(176, 54, 111, 0.16);
+  --social-hover-shadow: 0 8px 20px rgba(22, 101, 52, 0.15);
+  --icon-hover-shadow: 0 8px 18px rgba(87, 83, 78, 0.14);
   --btn-radius: 999px;
   --btn-primary-bg: var(--primary);
   --btn-primary-border: var(--primary);
   --btn-primary-color: #fff;
-  --btn-primary-hover-bg: #0a6770;
-  --btn-primary-hover-border: #0a6770;
+  --btn-primary-hover-bg: #14532d;
+  --btn-primary-hover-border: #14532d;
   --btn-primary-hover-color: #fff;
-  --btn-primary-shadow: 0 12px 28px rgba(14, 124, 134, 0.28);
+  --btn-primary-shadow: 0 12px 28px rgba(22, 101, 52, 0.2);
   --btn-outline-bg: var(--surface);
   --btn-outline-border: var(--secondary);
   --btn-outline-color: var(--secondary);
   --btn-outline-hover-bg: var(--secondary-soft);
   --btn-outline-hover-border: var(--secondary);
   --btn-outline-hover-color: var(--secondary);
-  --btn-outline-shadow: 0 12px 28px rgba(176, 54, 111, 0.16);
-  --glow-wash-1: rgba(14, 124, 134, 0.08);
-  --glow-wash-2: rgba(176, 54, 111, 0.07);
+  --btn-outline-shadow: 0 12px 28px rgba(87, 83, 78, 0.12);
+  --glow-wash-1: rgba(22, 101, 52, 0.06);
+  --glow-wash-2: rgba(87, 83, 78, 0.05);
 }
 
 html[data-theme="dark"] {
-  /* Dark theme palette (restored old UI) */
-  --bg: #0b0e14;
-  --bg-2: #10141d;
-  --primary: #38c8d2;
-  --primary-soft: rgba(56, 200, 210, 0.08);
-  --secondary: #d76aa9;
-  --secondary-soft: rgba(215, 106, 169, 0.06);
-  --highlight: #d7eef2;
-  --violet: #8f96ad;
-  --text: #dfe3ea;
-  --text-muted: rgba(223, 227, 234, 0.6);
-  --text-subtle: rgba(223, 227, 234, 0.26);
-  --surface: #131926;
-  --line: rgba(56, 200, 210, 0.16);
+  /* Dark theme palette (sage & cream after-dark) */
+  --bg: #131210;
+  --bg-2: #191714;
+  --primary: #8fc7a5;
+  --primary-soft: rgba(143, 199, 165, 0.08);
+  --secondary: #c9bfb4;
+  --secondary-soft: rgba(201, 191, 180, 0.06);
+  --highlight: #ede7dd;
+  --violet: #a29a90;
+  --text: #e8e3da;
+  --text-muted: rgba(232, 227, 218, 0.62);
+  --text-subtle: rgba(232, 227, 218, 0.26);
+  --surface: #201d19;
+  --line: rgba(143, 199, 165, 0.16);
   --radius-lg: 16px;
   --radius-md: 10px;
   --radius-sm: 6px;
@@ -99,49 +99,49 @@ html[data-theme="dark"] {
   --readout-color: var(--violet);
   --eyebrow-color: var(--primary);
   --card-bg: var(--bg-2);
-  --card-border: rgba(223, 227, 234, 0.08);
+  --card-border: rgba(232, 227, 218, 0.08);
   --card-shadow: none;
   --card-shadow-hover: 0 20px 45px rgba(0, 0, 0, 0.35);
-  --card-hover-border: rgba(56, 200, 210, 0.32);
-  --card-hover-border-2: rgba(215, 106, 169, 0.4);
+  --card-hover-border: rgba(143, 199, 165, 0.32);
+  --card-hover-border-2: rgba(201, 191, 180, 0.4);
   --card-hover-shadow: 0 14px 30px rgba(0, 0, 0, 0.28);
   --cluster-color: var(--violet);
   --tag-bg: var(--bg-2);
-  --tag-border: rgba(223, 227, 234, 0.1);
+  --tag-border: rgba(232, 227, 218, 0.1);
   --tag-color: var(--highlight);
-  --tag-hover-border: rgba(56, 200, 210, 0.55);
-  --tag-hover-bg: rgba(56, 200, 210, 0.08);
+  --tag-hover-border: rgba(143, 199, 165, 0.55);
+  --tag-hover-bg: rgba(143, 199, 165, 0.08);
   --tag-hover-color: var(--primary);
   --tag-hover-shadow: none;
   --project-title-color: var(--highlight);
-  --input-border: rgba(143, 150, 173, 0.35);
-  --input-focus-bg: rgba(56, 200, 210, 0.03);
+  --input-border: rgba(162, 154, 144, 0.35);
+  --input-focus-bg: rgba(143, 199, 165, 0.03);
   --input-focus-ring: transparent;
-  --success-bg: rgba(56, 200, 210, 0.06);
+  --success-bg: rgba(143, 199, 165, 0.06);
   --success-color: var(--highlight);
   --nav-mobile-bg: var(--bg);
   --nav-line: var(--highlight);
-  --selection-bg: rgba(56, 200, 210, 0.18);
+  --selection-bg: rgba(143, 199, 165, 0.18);
   --selection-color: #fff;
   --social-hover-shadow: none;
   --icon-hover-shadow: none;
   --btn-radius: 9px;
-  --btn-primary-bg: rgba(56, 200, 210, 0.08);
-  --btn-primary-border: rgba(56, 200, 210, 0.55);
+  --btn-primary-bg: rgba(143, 199, 165, 0.08);
+  --btn-primary-border: rgba(143, 199, 165, 0.55);
   --btn-primary-color: var(--primary);
-  --btn-primary-hover-bg: rgba(56, 200, 210, 0.14);
+  --btn-primary-hover-bg: rgba(143, 199, 165, 0.14);
   --btn-primary-hover-border: var(--primary);
   --btn-primary-hover-color: var(--highlight);
   --btn-primary-shadow: none;
-  --btn-outline-bg: rgba(215, 106, 169, 0.06);
-  --btn-outline-border: rgba(215, 106, 169, 0.5);
+  --btn-outline-bg: rgba(201, 191, 180, 0.06);
+  --btn-outline-border: rgba(201, 191, 180, 0.5);
   --btn-outline-color: var(--secondary);
-  --btn-outline-hover-bg: rgba(215, 106, 169, 0.12);
+  --btn-outline-hover-bg: rgba(201, 191, 180, 0.12);
   --btn-outline-hover-border: var(--secondary);
   --btn-outline-hover-color: var(--highlight);
   --btn-outline-shadow: none;
-  --glow-wash-1: rgba(56, 200, 210, 0.05);
-  --glow-wash-2: rgba(215, 106, 169, 0.05);
+  --glow-wash-1: rgba(143, 199, 165, 0.05);
+  --glow-wash-2: rgba(201, 191, 180, 0.05);
 }
 
 *, *::before, *::after {
@@ -251,7 +251,7 @@ html[data-theme="dark"] .blob { display: block; }
   height: 380px;
   bottom: -6%;
   left: 18%;
-  background: radial-gradient(circle, rgba(143, 150, 173, 0.06) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(120, 113, 108, 0.05) 0%, transparent 70%);
   animation: drift-3 25s ease-in-out infinite;
 }
 
@@ -425,6 +425,49 @@ html[data-theme="dark"] .bg-glow { display: none; }
   width: 100%;
 }
 
+/* ── View switcher (Portfolio / Joshko Labs) ── */
+.view-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.28rem;
+  background: var(--surface);
+  border: 1px solid var(--text-subtle);
+  border-radius: 999px;
+}
+
+.nav-bar .view-toggle {
+  margin-right: 2.75rem;
+}
+
+.view-toggle a {
+  padding: 0.42rem 1.15rem;
+  border-radius: 999px;
+  font-family: var(--font);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  color: var(--text-muted);
+  white-space: nowrap;
+  transition: color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+
+.view-toggle a:hover {
+  color: var(--primary);
+}
+
+.view-toggle a.active {
+  background: var(--primary-soft);
+  color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+
+/* the copy living inside the mobile hamburger overlay */
+.nav-links .view-toggle {
+  display: none;
+}
+
 /* ── Main container ── */
 main {
   max-width: 1120px;
@@ -487,11 +530,11 @@ html[data-theme="dark"] .readout-light { display: none; }
 }
 
 html[data-theme="dark"] .glow-cyan {
-  text-shadow: 0 0 18px rgba(56, 200, 210, 0.16);
+  text-shadow: 0 0 18px rgba(143, 199, 165, 0.16);
 }
 
 html[data-theme="dark"] .glow-magenta {
-  text-shadow: 0 0 18px rgba(215, 106, 169, 0.16);
+  text-shadow: 0 0 18px rgba(201, 191, 180, 0.16);
 }
 
 .hero-subtitle {
@@ -695,8 +738,8 @@ html[data-theme="dark"] .glow-magenta {
 html[data-theme="dark"] .section-title-accent {
   clip-path: var(--clip);
   border-radius: 0;
-  border-color: rgba(56, 200, 210, 0.35);
-  background: rgba(56, 200, 210, 0.05);
+  border-color: rgba(143, 199, 165, 0.35);
+  background: rgba(143, 199, 165, 0.05);
 }
 
 .reach-out {
@@ -1123,6 +1166,72 @@ html[data-theme="dark"] .section-title-accent {
   letter-spacing: 1px;
 }
 
+/* ── Beyond the Code (Joshko Labs bridge) ── */
+html {
+  overflow-x: clip;
+}
+
+.beyond-section {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  background: linear-gradient(180deg, #eaf0ea 0%, #e2eae2 100%);
+  text-align: center;
+  padding: clamp(3.25rem, 6vw, 4.75rem) clamp(1rem, 4vw, 2rem);
+}
+
+html[data-theme="dark"] .beyond-section {
+  background: linear-gradient(180deg, rgba(143, 199, 165, 0.07) 0%, rgba(143, 199, 165, 0.03) 100%);
+}
+
+.beyond-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.beyond-text {
+  max-width: 46rem;
+  margin: 0 auto 2rem;
+  color: var(--text-muted);
+}
+
+.beyond-btn {
+  display: inline-block;
+  font-family: var(--font);
+  font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #fff;
+  background: #166534;
+  padding: 1.05rem 2.6rem;
+  border-radius: var(--btn-radius);
+  text-decoration: none;
+  box-shadow: 0 12px 28px rgba(22, 101, 52, 0.22);
+  transition: transform 250ms ease, box-shadow 250ms ease, background 250ms ease;
+}
+
+.beyond-btn:hover {
+  background: #14532d;
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 18px 38px rgba(22, 101, 52, 0.3);
+}
+
+.beyond-btn:active {
+  transform: translateY(0) scale(0.99);
+}
+
+.beyond-btn:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+
+html[data-theme="dark"] .beyond-btn:hover {
+  background: #188542;
+}
+
 /* ── Responsive ── */
 @media (min-width: 768px) {
   .hero {
@@ -1278,5 +1387,22 @@ html[data-theme="dark"] .section-title-accent {
   .hero-stats {
     flex-direction: column;
     gap: 1.2rem;
+  }
+}
+
+/* ── View switcher responsive ── */
+@media (max-width: 767px) {
+  .nav-bar > .view-toggle {
+    display: none;
+  }
+
+  .nav-links .view-toggle {
+    display: inline-flex;
+    margin-bottom: 0.75rem;
+  }
+
+  .nav-links .view-toggle a {
+    padding: 0.55rem 1.5rem;
+    font-size: 1rem;
   }
 }

@@ -6,10 +6,10 @@
   --text-muted: rgba(223, 227, 234, 0.62);
   --text-subtle: rgba(223, 227, 234, 0.28);
   --highlight: #e6f4f6;
-  --primary: #38c8d2;
-  --secondary: #d76aa9;
+  --primary: #8fc7a5;
+  --secondary: #c9bfb4;
   --radius-sm: 6px;
-  --font: 'Karla', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif;
+  --font: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif;
 }
 
 .term-overlay {
@@ -33,7 +33,7 @@
   max-width: 680px;
   height: min(70vh, 560px);
   background: #10131a;
-  border: 1px solid rgba(56, 200, 210, 0.35);
+  border: 1px solid rgba(143, 199, 165, 0.3);
   border-radius: 12px;
   filter: drop-shadow(0 12px 40px rgba(0, 0, 0, 0.55));
   display: flex;
@@ -47,8 +47,8 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.6rem 1rem;
-  background: rgba(56, 200, 210, 0.04);
-  border-bottom: 1px solid rgba(56, 200, 210, 0.14);
+  background: rgba(143, 199, 165, 0.04);
+  border-bottom: 1px solid rgba(143, 199, 165, 0.14);
 }
 
 .term-dots {
@@ -90,7 +90,7 @@
 
 .term-close:hover {
   color: var(--highlight);
-  background: rgba(215, 106, 169, 0.1);
+  background: rgba(201, 191, 180, 0.1);
 }
 
 .term-body {
@@ -138,7 +138,7 @@
   align-items: center;
   gap: 0.4rem;
   padding: 0.75rem 1.2rem 1.1rem;
-  border-top: 1px solid rgba(56, 200, 210, 0.12);
+  border-top: 1px solid rgba(143, 199, 165, 0.12);
 }
 
 .term-prompt {
@@ -201,7 +201,7 @@
   border-color: var(--primary);
   color: var(--primary);
   opacity: 1;
-  box-shadow: 0 0 8px rgba(56, 200, 210, 0.2);
+  box-shadow: 0 0 8px rgba(143, 199, 165, 0.2);
 }
 
 .term-hint::after {
@@ -211,7 +211,7 @@
   left: 50%;
   transform: translateX(-50%) translateY(4px);
   background: var(--surface);
-  border: 1px solid rgba(215, 106, 169, 0.35);
+  border: 1px solid rgba(143, 199, 165, 0.3);
   color: var(--highlight);
   font-family: var(--font);
   font-size: 0.7rem;
