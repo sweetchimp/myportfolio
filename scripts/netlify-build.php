@@ -26,6 +26,13 @@ $controller = $app->make(App\Http\Controllers\PortfolioController::class);
 $html = $controller->index()->render();
 $joshkoLabsHtml = $controller->joshkoLabs()->render();
 
+/* Normalize baked local URLs to root-relative so internal links work on any deployed domain */
+$normalize = function (string $page): string {
+    return preg_replace('#https?://(localhost|127\.0\.0\.1)#', '', $page);
+};
+$html = $normalize($html);
+$joshkoLabsHtml = $normalize($joshkoLabsHtml);
+
 $dist = $root . '/dist';
 if (is_dir($dist)) {
     $it = new RecursiveIteratorIterator(
