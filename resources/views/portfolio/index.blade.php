@@ -258,33 +258,15 @@
     <section id="contact" class="section">
       <p class="section-readout"><span class="readout-dark">[ CONTACT.OPEN ]</span><span class="readout-light">CONTACT</span></p>
       <h2 class="section-title glow-text glow-cyan"><span class="section-title-accent">//</span> Contact</h2>
-      <p class="reach-out">Open to internships, freelance work, and collaboration — reach out below.</p>
-      @if (env('NETLIFY_BUILD'))
-        <form name="contact" method="POST" data-netlify="true" netlify-honeypot="website" action="/thanks.html" class="contact-form">
-          <div class="hp-field" aria-hidden="true">
-            <input type="text" name="website" tabindex="-1" autocomplete="off">
-          </div>
-          <input type="text" name="name" placeholder="Your Name" required>
-          <input type="email" name="email" placeholder="your@email.com" required>
-          <textarea name="message" placeholder="Your Message..." required></textarea>
-          <button type="submit" class="btn btn-primary">Send Message</button>
-        </form>
-      @else
-        <form action="{{ route('contact.submit') }}" method="POST" class="contact-form">
-          @csrf
-          <div class="hp-field" aria-hidden="true">
-            <input type="text" name="website" tabindex="-1" autocomplete="off">
-          </div>
-          <input type="text" name="name" placeholder="Your Name" required>
-          <input type="email" name="email" placeholder="your@email.com" required>
-          <textarea name="message" placeholder="Your Message..." required></textarea>
-          <button type="submit" class="btn btn-primary">Send Message</button>
-        </form>
-      @endif
-
-      @if (session('success'))
-        <div class="contact-success">{{ session('success') }}</div>
-      @endif
+      <p class="reach-out">Open to internships, freelance work, and collaboration &mdash; email me directly.</p>
+      <div class="contact-direct">
+        <a class="btn btn-primary" href="mailto:joshuakorutaro05@gmail.com?subject=Project%20inquiry">Email Me</a>
+        <button type="button" class="copy-email" data-email="joshuakorutaro05@gmail.com">
+          <span class="copy-email-address">joshuakorutaro05@gmail.com</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span class="copy-feedback" aria-live="polite"></span>
+        </button>
+      </div>
 
       <div class="contact-footer">
         <a href="mailto:joshuakorutaro05@gmail.com">
@@ -351,18 +333,6 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      var banner = document.querySelector('.success-banner');
-      if (!banner) return;
-      var timer = setTimeout(function () { dismiss(); }, 4000);
-      banner.querySelector('.banner-dismiss').addEventListener('click', function () {
-        clearTimeout(timer);
-        dismiss();
-      });
-      function dismiss() {
-        banner.classList.add('banner-fade-out');
-        banner.addEventListener('transitionend', function () { banner.remove(); });
-      }
-
       var toggle = document.querySelector('.nav-toggle');
       if (toggle) {
         toggle.addEventListener('click', function () {
@@ -378,6 +348,33 @@
           });
         });
       }
+
+      document.querySelectorAll('.copy-email').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var email = btn.getAttribute('data-email');
+          function done() {
+            btn.classList.add('is-copied');
+            btn.querySelector('.copy-feedback').textContent = 'Copied';
+            setTimeout(function () { btn.classList.remove('is-copied'); }, 1800);
+          }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(email).then(done).catch(function () { fallback(); });
+          } else {
+            fallback();
+          }
+          function fallback() {
+            var tmp = document.createElement('textarea');
+            tmp.value = email;
+            tmp.setAttribute('readonly', '');
+            tmp.style.position = 'fixed';
+            tmp.style.opacity = '0';
+            document.body.appendChild(tmp);
+            tmp.select();
+            try { document.execCommand('copy'); done(); } catch (e) {}
+            document.body.removeChild(tmp);
+          }
+        });
+      });
     });
   </script>
   <script src="/js/theme-toggle.js"></script>

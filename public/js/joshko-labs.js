@@ -11,29 +11,6 @@
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var LETTER_STAGGER_MS = 55;
 
-  /* ── Success banner dismiss ── */
-  function initBanner() {
-    var banner = document.querySelector('.success-banner');
-    if (!banner) return;
-    var timer = null;
-    if (!reduceMotion) {
-      timer = setTimeout(dismiss, 5000);
-    }
-    banner.querySelector('.banner-dismiss').addEventListener('click', function () {
-      if (timer) clearTimeout(timer);
-      dismiss();
-    });
-    function dismiss() {
-      banner.classList.add('banner-fade-out');
-      banner.addEventListener('transitionend', function () {
-        if (banner.parentNode) banner.parentNode.removeChild(banner);
-      });
-      setTimeout(function () {
-        if (banner.parentNode) banner.parentNode.removeChild(banner);
-      }, 500);
-    }
-  }
-
   /* ── Mobile hamburger ── */
   function initNav() {
     var toggle = document.querySelector('.nav-toggle');
@@ -455,13 +432,43 @@
       });
   }
 
+  /* ── Copy email address ── */
+  function initCopyEmail() {
+    document.querySelectorAll('.copy-email').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var email = btn.getAttribute('data-email');
+        function done() {
+          btn.classList.add('is-copied');
+          btn.querySelector('.copy-feedback').textContent = 'Copied';
+          setTimeout(function () { btn.classList.remove('is-copied'); }, 1800);
+        }
+        function fallback() {
+          var tmp = document.createElement('textarea');
+          tmp.value = email;
+          tmp.setAttribute('readonly', '');
+          tmp.style.position = 'fixed';
+          tmp.style.opacity = '0';
+          document.body.appendChild(tmp);
+          tmp.select();
+          try { document.execCommand('copy'); done(); } catch (e) {}
+          document.body.removeChild(tmp);
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(email).then(done).catch(fallback);
+        } else {
+          fallback();
+        }
+      });
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
-    initBanner();
     initNav();
     initHero();
     initTabs();
     initReveals();
     initMagneticButtons();
     initShowcase();
+    initCopyEmail();
   });
 })();

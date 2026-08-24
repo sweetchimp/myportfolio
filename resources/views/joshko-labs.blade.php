@@ -212,37 +212,17 @@
       <div class="js-reveal">
         <p class="kl-eyebrow">Contact</p>
         <h2 class="section-title">Start a <span class="accent-word">project</span></h2>
-        <p class="kl-intro">Have a business problem that needs software? Describe it below &mdash; you'll get a direct reply.</p>
+        <p class="kl-intro">Have a business problem that needs software? Email is the fastest way to reach me &mdash; you'll get a direct reply.</p>
       </div>
 
-      @if (env('NETLIFY_BUILD'))
-        <form name="joshko-labs-contact" method="POST" data-netlify="true" netlify-honeypot="website" action="/thanks.html" class="contact-form">
-          <div class="hp-field" aria-hidden="true">
-            <input type="text" name="website" tabindex="-1" autocomplete="off">
-          </div>
-          <input type="text" name="name" placeholder="Your Name" required>
-          <input type="email" name="email" placeholder="your@email.com" required>
-          <input type="text" name="company" placeholder="Company (optional)">
-          <textarea name="project_description" placeholder="Tell me about your project..." required></textarea>
-          <button type="submit" class="btn btn-primary">Send Inquiry</button>
-        </form>
-      @else
-        <form action="{{ route('joshko-labs.contact') }}" method="POST" class="contact-form">
-          @csrf
-          <div class="hp-field" aria-hidden="true">
-            <input type="text" name="website" tabindex="-1" autocomplete="off">
-          </div>
-          <input type="text" name="name" placeholder="Your Name" required>
-          <input type="email" name="email" placeholder="your@email.com" required>
-          <input type="text" name="company" placeholder="Company (optional)">
-          <textarea name="project_description" placeholder="Tell me about your project..." required></textarea>
-          <button type="submit" class="btn btn-primary">Send Inquiry</button>
-        </form>
-      @endif
-
-      @if (session('success'))
-        <div class="contact-success">{{ session('success') }}</div>
-      @endif
+      <div class="contact-direct">
+        <a class="btn btn-primary" href="mailto:joshuakorutaro05@gmail.com?subject=Project%20inquiry%20%E2%80%94%20Joshko%20Labs">Email Me</a>
+        <button type="button" class="copy-email" data-email="joshuakorutaro05@gmail.com">
+          <span class="copy-email-address">joshuakorutaro05@gmail.com</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span class="copy-feedback" aria-live="polite"></span>
+        </button>
+      </div>
 
       <div class="contact-footer">
         <a href="mailto:joshuakorutaro05@gmail.com">

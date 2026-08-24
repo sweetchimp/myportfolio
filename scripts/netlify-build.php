@@ -67,7 +67,6 @@ $assets = [
     'cv.pdf',
     'favicon.svg',
     'robots.txt',
-    'thanks.html',
     'images/joshko-logo-light.png',
     'images/joshko-logo-dark.png',
 ];
