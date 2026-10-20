@@ -273,10 +273,11 @@
 
     var USERNAME = 'sweetchimp';
     var API_URL = 'https://api.github.com/users/' + USERNAME + '/repos?sort=updated&per_page=100';
-    var CACHE_KEY = 'gh-joshko:' + USERNAME;
+    var CACHE_KEY = 'gh-joshko:v2:' + USERNAME;
     var CACHE_TTL_MS = 15 * 60 * 1000;
     var MAX_PROJECTS = 6;
     var NO_DESCRIPTION = 'No description provided';
+    var MAX_COMMIT_LENGTH = 90;
 
     function escapeHtml(str) {
       return String(str)
@@ -315,11 +316,60 @@
       });
     }
 
-    function formatUpdated(value) {
+    function truncate(str, max) {
+      var text = String(str || '').replace(/\s+/g, ' ').trim();
+      if (text.length <= max) return text;
+      return text.slice(0, max - 1).trim() + '\u2026';
+    }
+
+    /* "3 days ago" for recent pushes, oldest falls back to a date */
+    function relativeTime(value) {
+      if (!value) return '';
       var date = new Date(value);
       if (isNaN(date.getTime())) return '';
-      var parts = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-      return 'Updated ' + parts;
+
+      var seconds = Math.round((Date.now() - date.getTime()) / 1000);
+      if (seconds < 0) seconds = 0;
+      if (seconds < 60) return 'just now';
+
+      var units = [
+        { limit: 3600, secs: 60, label: 'minute' },
+        { limit: 86400, secs: 3600, label: 'hour' },
+        { limit: 2592000, secs: 86400, label: 'day' },
+        { limit: 31536000, secs: 2592000, label: 'month' },
+        { limit: Infinity, secs: 31536000, label: 'year' }
+      ];
+      for (var i = 0; i < units.length; i++) {
+        if (seconds < units[i].limit) {
+          var amount = Math.floor(seconds / units[i].secs);
+          return amount + ' ' + units[i].label + (amount === 1 ? '' : 's') + ' ago';
+        }
+      }
+      return '';
+    }
+
+    function fetchLatestCommit(fullName) {
+      return fetch('https://api.github.com/repos/' + fullName + '/commits?per_page=1', {
+        headers: { Accept: 'application/vnd.github+json' }
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error('Commit request failed');
+          return res.json();
+        })
+        .then(function (data) {
+          var commit = Array.isArray(data) ? data[0] : null;
+          if (!commit || !commit.commit) return null;
+          var committedAt = (commit.commit.committer && commit.commit.committer.date) ||
+            (commit.commit.author && commit.commit.author.date) || '';
+          return {
+            message: (commit.commit.message || '').split('\n')[0],
+            sha: commit.sha || '',
+            date: committedAt
+          };
+        })
+        .catch(function () {
+          return null;
+        });
     }
 
     function buildCard(repo) {
@@ -342,16 +392,25 @@
       body.className = 'kl-work-desc';
       body.textContent = desc;
 
-      var meta = document.createElement('p');
-      meta.className = 'kl-gh-meta';
-      var updated = formatUpdated(repo.pushed_at);
-      var stars = repo.stargazers_count || 0;
-      meta.innerHTML = '<span>' + escapeHtml(updated || '\u00A0') + '</span>' +
-        (stars > 0 ? '<span class="kl-gh-stars">' + stars + ' \u2605</span>' : '<span></span>');
-
       card.appendChild(kind);
       card.appendChild(title);
       card.appendChild(body);
+
+      var commit = repo.latest_commit;
+      if (commit && commit.message) {
+        var commitEl = document.createElement('p');
+        commitEl.className = 'kl-gh-commit';
+        commitEl.title = commit.message;
+        commitEl.textContent = truncate(commit.message, MAX_COMMIT_LENGTH);
+        card.appendChild(commitEl);
+      }
+
+      var meta = document.createElement('p');
+      meta.className = 'kl-gh-meta';
+      var updated = relativeTime(repo.pushed_at);
+      var stars = repo.stargazers_count || 0;
+      meta.innerHTML = '<span>' + escapeHtml(updated ? 'Updated ' + updated : '\u00A0') + '</span>' +
+        (stars > 0 ? '<span class="kl-gh-stars">' + stars + ' \u2605</span>' : '<span></span>');
       card.appendChild(meta);
 
       return card;
@@ -411,6 +470,20 @@
       }
     }
 
+    /* Attach the latest commit to each of the top repos (best-effort) */
+    function enrich(repos) {
+      var originals = repos.filter(function (repo) { return !repo.fork; });
+      var top = rankRepos(originals).slice(0, MAX_PROJECTS);
+
+      return Promise.all(top.map(function (repo) {
+        return fetchLatestCommit(repo.full_name).then(function (commit) {
+          repo.latest_commit = commit;
+        });
+      })).then(function () {
+        return repos;
+      });
+    }
+
     var cached = readCache();
     if (Array.isArray(cached)) {
       render(cached);
@@ -424,6 +497,10 @@
       })
       .then(function (repos) {
         if (!Array.isArray(repos)) throw new Error('Unexpected response');
+        return enrich(repos);
+      })
+      .then(function (repos) {
+        if (!repos) return;
         writeCache(repos);
         render(repos);
       })

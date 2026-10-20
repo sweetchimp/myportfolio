@@ -923,6 +923,52 @@ html[data-theme="dark"] .section-title-accent {
   margin: 0;
 }
 
+/* ── GitHub card: live stats + latest commit ── */
+.project-stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.project-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.lang-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary);
+  flex: 0 0 auto;
+}
+
+.project-stat--stars {
+  color: var(--primary);
+}
+
+.project-commit {
+  margin: 0;
+  padding: 0.5rem 0.7rem;
+  border-radius: var(--radius-sm);
+  background: var(--primary-soft);
+  border: 1px solid var(--card-border);
+  color: var(--text);
+  font-size: 0.74rem;
+  font-style: italic;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .projects-fallback {
   grid-column: 1 / -1;
   display: flex;

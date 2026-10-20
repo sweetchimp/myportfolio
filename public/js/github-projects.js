@@ -2,10 +2,34 @@
   var USERNAME = 'sweetchimp';
   var API_URL = 'https://api.github.com/users/' + USERNAME + '/repos?sort=updated&per_page=100';
   var GITHUB_URL = 'https://github.com/' + USERNAME;
-  var CACHE_KEY = 'gh-projects:' + USERNAME;
+  var CACHE_KEY = 'gh-projects:v2:' + USERNAME;
   var CACHE_TTL_MS = 15 * 60 * 1000;
   var MAX_PROJECTS = 6;
   var NO_DESCRIPTION = 'No description provided';
+  var MAX_COMMIT_LENGTH = 90;
+
+  /* GitHub's language palette (fallback to the site accent) */
+  var LANG_COLORS = {
+    JavaScript: '#f1e05a',
+    TypeScript: '#3178c6',
+    PHP: '#4F5D95',
+    Python: '#3572A5',
+    HTML: '#e34c26',
+    CSS: '#563d7c',
+    SCSS: '#c6538c',
+    'C#': '#178600',
+    'C++': '#f34b7d',
+    C: '#555555',
+    Java: '#b07219',
+    Kotlin: '#A97BFF',
+    Dart: '#00B4AB',
+    Vue: '#41b883',
+    Shell: '#89e051',
+    Go: '#00ADD8',
+    Ruby: '#701516',
+    Rust: '#dea584',
+    Blade: '#f7523f'
+  };
 
   function escapeHtml(str) {
     return String(str)
@@ -29,6 +53,12 @@
       .join(' ');
   }
 
+  function truncate(str, max) {
+    var text = String(str || '').replace(/\s+/g, ' ').trim();
+    if (text.length <= max) return text;
+    return text.slice(0, max - 1).trim() + '\u2026';
+  }
+
   function recencyWeight(repo) {
     var pushed = new Date(repo.pushed_at).getTime();
     if (!pushed) return 0;
@@ -44,12 +74,88 @@
     });
   }
 
+  /* "Updated 3 days ago" — falls back to an absolute date for old pushes */
+  function relativeTime(value) {
+    if (!value) return '';
+    var date = new Date(value);
+    if (isNaN(date.getTime())) return '';
+
+    var seconds = Math.round((Date.now() - date.getTime()) / 1000);
+    if (seconds < 0) seconds = 0;
+    if (seconds < 60) return 'just now';
+
+    var units = [
+      { limit: 3600, secs: 60, label: 'minute' },
+      { limit: 86400, secs: 3600, label: 'hour' },
+      { limit: 2592000, secs: 86400, label: 'day' },
+      { limit: 31536000, secs: 2592000, label: 'month' },
+      { limit: Infinity, secs: 31536000, label: 'year' }
+    ];
+    for (var i = 0; i < units.length; i++) {
+      if (seconds < units[i].limit) {
+        var amount = Math.floor(seconds / units[i].secs);
+        return amount + ' ' + units[i].label + (amount === 1 ? '' : 's') + ' ago';
+      }
+    }
+    return '';
+  }
+
+  function fetchLatestCommit(fullName) {
+    return fetch('https://api.github.com/repos/' + fullName + '/commits?per_page=1', {
+      headers: { Accept: 'application/vnd.github+json' }
+    })
+      .then(function (res) {
+        if (!res.ok) throw new Error('Commit request failed');
+        return res.json();
+      })
+      .then(function (data) {
+        var commit = Array.isArray(data) ? data[0] : null;
+        if (!commit || !commit.commit) return null;
+        var committedAt = (commit.commit.committer && commit.commit.committer.date) ||
+          (commit.commit.author && commit.commit.author.date) || '';
+        return {
+          message: (commit.commit.message || '').split('\n')[0],
+          sha: commit.sha || '',
+          date: committedAt
+        };
+      })
+      .catch(function () {
+        return null;
+      });
+  }
+
+  function buildStats(repo) {
+    var stats = document.createElement('div');
+    stats.className = 'project-stats';
+
+    if (repo.language) {
+      var lang = document.createElement('span');
+      lang.className = 'project-stat project-stat--lang';
+      var dot = document.createElement('span');
+      dot.className = 'lang-dot';
+      dot.style.background = LANG_COLORS[repo.language] || 'var(--primary)';
+      lang.appendChild(dot);
+      lang.appendChild(document.createTextNode(repo.language));
+      stats.appendChild(lang);
+    }
+
+    var stars = repo.stargazers_count || 0;
+    if (stars > 0) {
+      var starsEl = document.createElement('span');
+      starsEl.className = 'project-stat project-stat--stars';
+      starsEl.textContent = stars + ' \u2605';
+      starsEl.title = stars + ' star' + (stars === 1 ? '' : 's');
+      stats.appendChild(starsEl);
+    }
+
+    return stats.children.length ? stats : null;
+  }
+
   function buildCard(repo) {
     var name = escapeHtml(formatName(repo.name));
     var desc = repo.description && repo.description.trim()
       ? escapeHtml(repo.description.trim())
       : escapeHtml(NO_DESCRIPTION);
-    var url = escapeHtml(repo.html_url);
 
     var card = document.createElement('a');
     card.className = 'project-card';
@@ -68,27 +174,27 @@
     card.appendChild(title);
     card.appendChild(description);
 
-    var updated = formatUpdatedDate(repo.pushed_at);
+    var stats = buildStats(repo);
+    if (stats) card.appendChild(stats);
+
+    var commit = repo.latest_commit;
+    if (commit && commit.message) {
+      var commitEl = document.createElement('p');
+      commitEl.className = 'project-commit';
+      commitEl.title = commit.message;
+      commitEl.textContent = truncate(commit.message, MAX_COMMIT_LENGTH);
+      card.appendChild(commitEl);
+    }
+
+    var updated = relativeTime(repo.pushed_at);
     if (updated) {
       var date = document.createElement('p');
       date.className = 'project-updated';
-      date.textContent = updated;
+      date.textContent = 'Updated ' + updated;
       card.appendChild(date);
     }
 
     return card;
-  }
-
-  function formatUpdatedDate(value) {
-    if (!value) return '';
-    var date = new Date(value);
-    if (isNaN(date.getTime())) return '';
-    var parts = date.toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric'
-    });
-    return 'Updated ' + parts;
   }
 
   function buildFallback() {
@@ -155,6 +261,20 @@
     }
   }
 
+  /* Attach the latest commit to each of the top repos (best-effort) */
+  function enrich(repos) {
+    var originals = repos.filter(function (repo) { return !repo.fork; });
+    var top = rankRepos(originals).slice(0, MAX_PROJECTS);
+
+    return Promise.all(top.map(function (repo) {
+      return fetchLatestCommit(repo.full_name).then(function (commit) {
+        repo.latest_commit = commit;
+      });
+    })).then(function () {
+      return repos;
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     var cached = readCache();
     if (Array.isArray(cached)) {
@@ -170,8 +290,12 @@
       .then(function (repos) {
         if (!Array.isArray(repos) || !repos.length) {
           renderError();
-          return;
+          return null;
         }
+        return enrich(repos);
+      })
+      .then(function (repos) {
+        if (!repos) return;
         writeCache(repos);
         render(repos);
       })

@@ -193,13 +193,13 @@
             </div>
           </article>
         @endforeach
+      </div>
 
-        <div class="kl-gh-block js-reveal">
-          <p class="kl-eyebrow">More builds</p>
-          <p class="kl-gh-sub">Open-source projects and experiments, pulled live from GitHub.</p>
-          <div id="kl-github-grid" class="kl-work-grid kl-gh-grid" aria-live="polite"></div>
-          <a class="kl-gh-link" href="https://github.com/sweetchimp" target="_blank" rel="noopener">See everything on GitHub &rarr;</a>
-        </div>
+      <div class="kl-gh-block js-reveal">
+        <p class="kl-eyebrow">More builds</p>
+        <p class="kl-gh-sub">Open-source projects and experiments, pulled live from GitHub.</p>
+        <div id="kl-github-grid" class="kl-work-grid kl-gh-grid" aria-live="polite"></div>
+        <a class="kl-gh-link" href="https://github.com/sweetchimp" target="_blank" rel="noopener">See everything on GitHub &rarr;</a>
       </div>
     </section>
 
