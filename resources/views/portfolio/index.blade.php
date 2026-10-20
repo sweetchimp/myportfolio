@@ -215,6 +215,34 @@
           </div>
         </div>
 
+        <div id="featured" class="bento-cluster bento-featured">
+          <h3 class="cluster-label">Featured Work</h3>
+          <div class="featured-grid">
+            @foreach (config('projects.featured') as $project)
+              <article class="project-card project-card--featured">
+                <p class="project-kind">{{ $project['kind'] }}</p>
+                <h3 class="project-title">{{ $project['name'] }}</h3>
+                <p class="project-desc">{{ $project['description'] }}</p>
+                @if (!empty($project['tags']))
+                  <div class="skill-tags">
+                    @foreach ($project['tags'] as $tag)
+                      <span class="tag">{{ $tag }}</span>
+                    @endforeach
+                  </div>
+                @endif
+                <div class="project-foot">
+                  <div class="project-actions">
+                    @include('partials.project-status', ['project' => $project])
+                  </div>
+                  @if (!empty($project['github_url']))
+                    <a class="project-gh" href="{{ $project['github_url'] }}" target="_blank" rel="noopener" aria-label="GitHub repository for {{ $project['name'] }}">GitHub &nearr;</a>
+                  @endif
+                </div>
+              </article>
+            @endforeach
+          </div>
+        </div>
+
         <div id="projects" class="bento-cluster bento-projects">
           <h3 class="cluster-label">Projects</h3>
           <div id="projects-grid" class="projects-grid"></div>

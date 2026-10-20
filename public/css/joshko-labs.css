@@ -787,6 +787,109 @@ html.js .kl-work-card.js-reveal-card.is-visible {
   box-shadow: 0 0 0 4px var(--accent-soft);
 }
 
+/* ── Featured project: tech tags, status badges & actions ── */
+.kl-work-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.4rem;
+}
+
+.kl-work-tags .tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.32rem 0.8rem;
+  border-radius: var(--radius-pill);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-softer);
+  color: var(--accent-deep);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  transition: border-color 0.2s ease-out, background 0.2s ease-out, color 0.2s ease-out, box-shadow 0.2s ease-out, transform 0.2s ease-out;
+}
+
+.kl-work-tags .tag:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  background: var(--surface-alt);
+  color: var(--accent);
+  box-shadow: 0 8px 18px rgba(22, 101, 52, 0.12);
+}
+
+.kl-work-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.kl-work-gh {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease-out;
+}
+
+.kl-work-gh:hover {
+  color: var(--accent);
+}
+
+/* Status badges (shared with the Portfolio page — sage & cream palette) */
+.project-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.72rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.project-badge--live {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #FFFFFF;
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+.project-badge--dev {
+  background: var(--accent-soft);
+  border-color: var(--accent-softer);
+  color: var(--accent-deep);
+}
+
+.project-badge--soon {
+  background: transparent;
+  border-color: var(--line-soft);
+  color: var(--ink-secondary);
+}
+
+.project-demo--disabled {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.6rem 1.45rem;
+  border-radius: var(--radius-pill);
+  border: 1px dashed var(--line-soft);
+  color: var(--ink-secondary);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  cursor: not-allowed;
+}
+
 /* ── More builds (GitHub showcase) ── */
 .kl-gh-block {
   margin-top: 3.2rem;

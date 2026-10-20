@@ -171,24 +171,28 @@
       </div>
       <div class="kl-work-grid">
 
-        <article class="kl-work-card js-reveal-card">
-          <p class="kl-work-kind">Hotel Operations Platform</p>
-          <h3>Alton Hotels Management System</h3>
-          <p class="kl-work-desc">A full hotel operations platform built for a 30-room property &mdash; reservations, guest management, check-in/check-out, F&amp;B, staff management, and reporting.</p>
-          <div class="kl-work-foot">
-            <a href="https://altonhotels.netlify.app/" target="_blank" rel="noopener" class="btn btn-primary">Live Demo</a>
-            <span class="kl-live-note">Live &amp; testable</span>
-          </div>
-        </article>
-
-        <article class="kl-work-card js-reveal-card">
-          <p class="kl-work-kind">Farm Management System</p>
-          <h3>FarmOS</h3>
-          <p class="kl-work-desc">A farm management system designed for small-to-medium mixed farms &mdash; tracking expenses, production, sales, and worker payments. Validated against a real 200-animal, 10-crop farm operation.</p>
-          <div class="kl-work-foot">
-            <span class="kl-soon">Live demo coming soon</span>
-          </div>
-        </article>
+        @foreach (config('projects.featured') as $project)
+          <article class="kl-work-card js-reveal-card">
+            <p class="kl-work-kind">{{ $project['kind'] }}</p>
+            <h3>{{ $project['name'] }}</h3>
+            <p class="kl-work-desc">{{ $project['description'] }}</p>
+            @if (!empty($project['tags']))
+              <div class="kl-work-tags">
+                @foreach ($project['tags'] as $tag)
+                  <span class="tag">{{ $tag }}</span>
+                @endforeach
+              </div>
+            @endif
+            <div class="kl-work-foot">
+              <div class="kl-work-actions">
+                @include('partials.project-status', ['project' => $project])
+              </div>
+              @if (!empty($project['github_url']))
+                <a class="kl-work-gh" href="{{ $project['github_url'] }}" target="_blank" rel="noopener" aria-label="GitHub repository for {{ $project['name'] }}">GitHub &nearr;</a>
+              @endif
+            </div>
+          </article>
+        @endforeach
 
         <div class="kl-gh-block js-reveal">
           <p class="kl-eyebrow">More builds</p>

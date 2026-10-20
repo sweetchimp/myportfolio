@@ -954,6 +954,120 @@ html[data-theme="dark"] .section-title-accent {
   color: var(--secondary);
 }
 
+/* ── Featured Work (rendered from shared config/projects.php) ── */
+.bento-featured {
+  grid-column: 1 / -1;
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.project-card--featured {
+  cursor: default;
+}
+
+/* Featured cards have their own footer actions, so hide the repo hint. */
+.project-card--featured::after {
+  content: none;
+}
+
+.project-kind {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--secondary);
+  margin: 0;
+}
+
+.project-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.project-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--card-border);
+}
+
+.project-gh {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--secondary);
+  text-decoration: none;
+  transition: color 0.2s ease-out;
+}
+
+.project-gh:hover {
+  color: var(--primary);
+}
+
+/* ── Status badges (shared with Joshko Labs — sage & cream palette) ── */
+.project-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.72rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.project-badge--live {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 0 0 4px var(--primary-soft);
+}
+
+.project-badge--dev {
+  background: var(--primary-soft);
+  border-color: var(--line);
+  color: var(--primary);
+}
+
+.project-badge--soon {
+  background: transparent;
+  border-color: var(--line);
+  color: var(--text-muted);
+}
+
+.project-demo--disabled {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1.3rem;
+  border-radius: 999px;
+  border: 1px dashed var(--line);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  cursor: not-allowed;
+}
+
 /* ── Goals ── */
 .goal-list {
   list-style: none;
@@ -1216,7 +1330,8 @@ html[data-theme="dark"] .beyond-btn:hover {
     grid-column: 1 / -1;
   }
 
-  .projects-grid {
+  .projects-grid,
+  .featured-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -1296,12 +1411,14 @@ html[data-theme="dark"] .beyond-btn:hover {
 
   .bento-exp,
   .bento-skills,
+  .bento-featured,
   .bento-projects {
     grid-column: 1 / -1;
     grid-row: auto;
   }
 
-  .projects-grid {
+  .projects-grid,
+  .featured-grid {
     grid-template-columns: 1fr;
   }
 
