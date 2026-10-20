@@ -64,7 +64,7 @@ $assets = [
     'js/github-projects.js',
     'js/terminal.js',
     'js/joshko-labs.js',
-    'cv.pdf',
+    'Korutaro_Joshua_Mwesigwa_CV.pdf',
     'favicon.svg',
     'robots.txt',
     'images/joshko-logo-light.png',

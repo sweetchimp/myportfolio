@@ -391,10 +391,10 @@
       enqueueTypeLine('Usage: cv --download');
       return;
     }
-    enqueueTypeLine('Downloading /cv.pdf ...');
+    enqueueTypeLine('Downloading /Korutaro_Joshua_Mwesigwa_CV.pdf ...');
     enqueueAction(function () {
       var a = document.createElement('a');
-      a.href = '/cv.pdf';
+      a.href = '/Korutaro_Joshua_Mwesigwa_CV.pdf';
       a.download = '';
       a.style.display = 'none';
       document.body.appendChild(a);

@@ -126,7 +126,7 @@
             </svg>
           </a>
         </div>
-        <a href="/cv.pdf" class="btn btn-outline cv-btn" download>Download CV</a>
+        <a href="/Korutaro_Joshua_Mwesigwa_CV.pdf" class="btn btn-outline cv-btn" download>Download CV</a>
       </div>
     </section>
 
